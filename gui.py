@@ -44,19 +44,33 @@ def btn_div():
     global math
     math = 'div'
 
+def btn_mod():
+    global num_mod
+    num_mod = e.get()
+    e.delete(0,END)
+    global math
+    math = 'mod'
+
+def btn_dec():
+    global num_dec
+    num_dec = e.get()
+    e.delete(0,END)
+    e.insert(0, str(num_dec) + '.')
+
 def btn_equal():
     global num_equal
     num_equal = e.get()
     e.delete(0,END)
     if math == 'add':
-        result = int(num_add) + int(num_equal)
+        result = float(num_add) + float(num_equal)
     elif math == 'sub':
-        result = int(num_sub) - int(num_equal)
+        result = float(num_sub) - float(num_equal)
     elif math == 'multi':
-        result = int(num_multi) * int(num_equal)
+        result = float(num_multi) * float(num_equal)
     elif math == 'div':
-        result = int(num_div) / int(num_equal)
-        result = int(result)
+        result = float(num_div) / float(num_equal)
+    elif math == 'mod':
+        result = float(num_mod) % float(num_equal)
     
     e.insert(0, str(result))
 
@@ -66,8 +80,8 @@ b_sub = Button(root,text='-',padx=15,pady=20,width=10,bg='skyblue',command=btn_s
 b_mult = Button(root,text='x',padx=15,pady=20,width=10,bg='skyblue',command=btn_multi)
 b_div = Button(root,text='/',padx=15,pady=20,width=10,bg='skyblue',command=btn_div)
 b_eq = Button(root,text='=',padx=15,pady=20,width=10,bg='skyblue',command=btn_equal)
-b_perc = Button(root,text='%',padx=15,pady=20,width=10,bg='lightblue')
-b_dec = Button(root,text='.',padx=15,pady=20,width=10,bg='lightblue')
+b_mod = Button(root,text='%',padx=15,pady=20,width=10,bg='lightblue',command=btn_mod)
+b_dec = Button(root,text='.',padx=15,pady=20,width=10,bg='lightblue',command=btn_dec)
 
 b1 = Button(root,text='1',padx=15,pady=20,width=10,bg='lightblue',command=lambda: btn_click(1))
 b2 = Button(root,text='2',padx=15,pady=20,width=10,bg='lightblue',command=lambda: btn_click(2))
@@ -86,7 +100,7 @@ b_sub.grid(row=2,column=3)
 b_mult.grid(row=3,column=3)
 b_div.grid(row=4,column=3)
 b_eq.grid(row=5,column=3)
-b_perc.grid(row=5,column=1)
+b_mod.grid(row=5,column=1)
 b_dec.grid(row=5,column=2)
 
 b1.grid(row=2,column=0)
